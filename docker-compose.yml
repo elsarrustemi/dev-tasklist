@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   mysql:
-    image: mysql:latest
+    image: mysql/mysql-server:8.0.23
     environment:
       MYSQL_ROOT_PASSWORD: root_password
       MYSQL_DATABASE: my_database
@@ -14,7 +14,7 @@ services:
         - ./backend/scripts:/docker-entrypoint-initdb.d
 
   phpmyadmin:
-    image: phpmyadmin/phpmyadmin:latest
+    image: phpmyadmin/phpmyadmin:5.1.0
     environment:
       PMA_HOST: mysql
       PMA_PORT: 3306

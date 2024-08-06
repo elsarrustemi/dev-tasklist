@@ -1,21 +1,18 @@
-async function getBookings() {
-  const res = await fetch('http://host.docker.internal:5000/api/bookings', { cache: 'no-store', mode: 'no-cors' })
- 
-  if (!res.ok) {
-    throw new Error('Failed to fetch data')
-  }
- 
-  return res.json()
-}
+import Link from "next/link";
+import BookingList from "./components/bookingList";
 
-const Home: React.FC = async () => {
 
-  const bookings = await getBookings()
-
+const Home: React.FC = () => {
   return (
-    <div>
-      <h1>Current booking count: {bookings.length}</h1>
-
+    <div className="h-screen flex items-center justify-center">
+      <div className="max-w-prose mx-auto p-8 shadow-md rounded-lg border-t-2 border-gray-500 bg-gray-100 dark:text-white">
+        <div>
+          <BookingList />
+        </div>
+        <div className="py-7">
+          <Link href="booking/bookingForm" className="text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-800">Add a booking</Link>
+        </div>
+      </div>
     </div>
   );
 };
